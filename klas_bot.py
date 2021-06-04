@@ -1,7 +1,5 @@
 from selenium import webdriver # 웹 브라우저 자동화 모듈
 import time
-import imapclient # 메일 모듈
-import pyzmail # 메일 모듈
 
 # 웹 브라우저 자동화
 driver = webdriver.Chrome()
@@ -25,6 +23,9 @@ for tr in subjectable.find_elements_by_tag_name("tr"):
     td = tr.find_elements_by_tag_name("td")
     s = "{} , {}, {}\n".format(td[0].text, td[1].text , td[2].text)
     print (s)
+
+import imapclient # 메일 모듈
+import pyzmail # 메일 모듈
 
 # 메일에 있는 첨부 파일 저장하기
 mail_tf = int(input('메일으로부터 다운로드 받을 pdf 첨부파일이 있나요? (yes : 1 입력): '))
