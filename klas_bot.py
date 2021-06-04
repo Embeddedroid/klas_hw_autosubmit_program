@@ -146,15 +146,19 @@ if(image_tf == 1):
 # pdf 병합하기
 from PyPDF2 import PdfFileMerger, PdfFileReader
 
-if image_tf ==1:
+# image 파일이 있고, mail 파일도 있는 경우
+if image_tf ==1: 
     pdfs = [heading + '.pdf', imageheading + '.pdf']
     
     if mail_tf == 1:
         pdfs.append(mailheading)
-elif mail_tf == 1:
+        
+# image 파일만 있는 경우
+elif mail_tf == 1: 
     pdfs=[heading + '.pdf']
     pdfs.append(mailheading)
     
+# 둘다 없는 경우
 else :
     pdfs[heading + '.pdf']
     
@@ -203,16 +207,16 @@ filepath = os.getcwd()+'\\'+heading+'.pdf'
 
 
 # 과제 제목, 본문 입력
-if godfix==1:
+if godfix==1: # 수정하는 경우
     driver.find_element_by_xpath('//*[@id="appModule"]/div/div[5]/button[1]').click()
-else:
+else: # 처음 제출하는 경우
     driver.find_element_by_css_selector("input[type='text']").send_keys(heading)
     driver.find_element_by_id('textarea').send_keys("안녕하세요.\n"+heading+' 제출합니다')
 
 driver.find_element_by_css_selector("input[type='file']").send_keys(filepath)
 
-if godfix==1:
+if godfix==1: # 수정하는 경우
     driver.find_element_by_xpath('//*[@id="appModule"]/div/div[3]/button[1]').click() # 제출 버튼 클릭
-else:
+else: # 처음 제출하는 경우
     driver.find_element_by_xpath('//*[@id="appModule"]/div[4]/button[1]').click() # 제출 버튼 클릭
 
